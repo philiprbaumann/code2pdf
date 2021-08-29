@@ -119,6 +119,7 @@ class ConvertToPDF
   end
 
   def add_space(height)
-    "<div style='margin-bottom: #{height}px'>&nbsp;</div>"
+    "<p style="page-break-after: always;">&nbsp;</p>"
+    "<p style="page-break-before: always;">&nbsp;</p>"
   end
 end
