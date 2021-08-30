@@ -33,15 +33,15 @@ class ConvertToPDF
   def pdf
     html ||= ''
 
-    style = 'size: 12px; font-family: Helvetica, sans-serif;'
+    style = 'size: 25; font-family: Helvetica, sans-serif;'
 
     read_files.each do |file|
       html += "<strong style='#{style}'>File: #{file.first}</strong></br></br>"
       html += prepare_line_breaks(syntax_highlight(file)).to_s
-      html += add_space(30)
+      html += add_space
     end
 
-    @kit = PDFKit.new(html, page_size: 'A4')
+    @kit = PDFKit.new(html, page_size: 'A5')
     @kit
   end
 
@@ -118,8 +118,7 @@ class ConvertToPDF
     content.gsub(/\n/, '<br>')
   end
 
-  def add_space(height)
-    "<p style="page-break-after: always;">&nbsp;</p>"
-    "<p style="page-break-before: always;">&nbsp;</p>"
+  def add_space
+    "<p style='page-break-after: always;'>&nbsp;</p><p style='page-break-before: always;'>&nbsp;</p>"
   end
 end
